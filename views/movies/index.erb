@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Basic HTML Page</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+
+  <body>
+    <form action="/search_movies" method="get">
+    <label for="Search">Search:</label>
+    <input type="text" id="search" name="search_results" />
+    <input type="submit" />
+    </form>
+    <table>
+      <tr> <td><a href="/movies?order=title"> Title </a></td><td><a href="/movies?order=year"> Year </a></td><td><a href="/movies?order=rating"> Rating </a></td><td>Genre</td><td>Studio</td></tr>
+    <%@movies.each do |movie|%>
+        <tr>
+        <td><a href="/movies/<%=movie["id"]%>"><%=movie["title"]%></a></td>
+        <td><%=movie["year"]%></td>
+        <td><%=movie["rating"]%></td>
+        <td><%=movie["genre"]%></td>
+        <td><%=movie["studio"]%></td>
+        </tr>
+      <%end%>
+    </table>
+    <div style="width:25%">
+    <% if @page_number != "1" %>
+      <a href="/movies?page=<%= @page_number.to_i - 1%>&order=<%=@order%>"> Previous </a>
+      <% end %>
+      <a style="float:right" href="/movies?page=<%= @page_number.to_i + 1%>&order=<%=@order%>"> Next </a>
+    </div>
+  </body>
+</html>

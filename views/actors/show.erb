@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Basic HTML Page</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+
+  <body>
+    <form action="/search_actors" method="get">
+    <label for="Search">Search:</label>
+    <input type="text" id="search" name="search_results" />
+    <input type="submit" />
+    </form>
+    <h1><%=@this_actor[0]["name"]%></h1>
+    <table><tr><td>Movie Title</td><td>role</td></tr>
+      <%@actors_movies.each do |movie|%>
+      <tr><td><a href="/movies/<%=movie["id"] %>"><%=movie["title"] %></a></td> <td><%=movie["character"]%></td></tr>
+      <%end%>
+    </table>
+  </body>
+</html>

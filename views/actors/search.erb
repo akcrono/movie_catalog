@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Basic HTML Page</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+
+  <body>
+    <form action="/search_actors" method="get">
+    <label for="Search">Search:</label>
+    <input type="text" id="search" name="search_results" />
+    <input type="submit" />
+    </form>
+
+    <h3>Search results for <%=@search%>:</h3>
+    <ul><%@actors.each do |actor|%>
+      <li><a href="/actors/<%=actor["id"] %>"><%=actor["name"] %> </a></li>
+      <%end%></ul>
+  </body>
+</html>

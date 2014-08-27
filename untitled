@@ -1,0 +1,5 @@
+SELECT actors.id, actors.name count(actors.id) AS amount FROM actors
+      ORDER BY actors.name
+                LIMIT 20
+                OFFSET 0;
+                GROUP BY
