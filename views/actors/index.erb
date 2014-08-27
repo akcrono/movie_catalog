@@ -11,11 +11,11 @@
     <input type="text" id="search" name="search_results" />
     <input type="submit" />
     </form>
-    <ul>
+    <table><tr><td>Name</td><td>Number of Movies</td></tr>
     <%@actors.each do |actor|%>
-      <li><a href="/actors/<%=actor["id"]%>"><%=actor["name"]%></a></li>
+      <tr><td><a href="/actors/<%=actor["id"]%>"><%=actor["name"]%></a></td><td style="text-align:right"><%=actor["movie_count"]%></td></tr>
     <%end%>
-    </ul>
+    </table>
     <div style="width:25%">
       <% if @page_number != "1" %>
         <a href="/actors?page=<%= @page_number.to_i - 1%>"> Previous </a>

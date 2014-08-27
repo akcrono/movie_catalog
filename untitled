@@ -1,5 +1,55 @@
-SELECT actors.id, actors.name count(actors.id) AS amount FROM actors
+SELECT actors.id, actors.name AS amount FROM actors
+                JOIN cast_members ON actors.id = cast_members.actor_id
+                WHERE actors.name = 'Andrew Garfield'
+                LIMIT 20
+                OFFSET 0
+                ORDER BY actors.name;
+
+
+                SELECT actors.id, actors.name FROM actors
+                JOIN cast_members ON cast_members.actor_id = actors.id
+                LIMIT 20
+                OFFSET 0
+                ORDER BY actors.name;
+
+                SELECT actors.id, actors.name, count(actors.id) FROM actors
+            WHERE actors.id = 7476
+            LIMIT 10
+            OFFSET 0
+            GROUP BY name
+            ORDER BY actors.name;
+
+
+
+            SELECT  actors.id, count(actors.id) AS sum, actors.name FROM actors
+                JOIN cast_members ON cast_members.actor_id = actors.id
+                WHERE actors.name ILIKE '%daniel%'
+                GROUP BY actors.name
+                ORDER BY actors.name;
+
+                SELECT id, name,
+                      (SELECT count(cast_members.movie_id) FROM cast_members
+                      JOIN actors ON actors.id = cast_members.actor_id
+                      WHERE actors.name ILIKE '%daniel%'
+                      GROUP BY cast_members.actor_id) as total
+                      FROM actors
       ORDER BY actors.name
                 LIMIT 20
-                OFFSET 0;
-                GROUP BY
+                OFFSET #{(page.to_i-1)*20+1}
+
+
+
+                SELECT count(cast_members.movie_id) AS total FROM cast_members
+                      JOIN actors ON actors.id = cast_members.actor_id
+                      WHERE actors.name ILIKE '%daniel%'
+                      GROUP BY cast_members.actor_id;
+
+SELECT count(cast_members.movie_id) FROM cast_members
+  JOIN actors ON actors.id = cast_members.actor_id
+  WHERE actors.id = 7476
+  GROUP BY cast_members.actor_id;
+
+
+
+
+

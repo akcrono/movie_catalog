@@ -27,10 +27,12 @@ end
 
 def get_actors(page)
   db_connection do |conn|
-    conn.exec("SELECT id, name FROM actors
-      ORDER BY actors.name
-                LIMIT 20
-                OFFSET #{(page.to_i-1)*20+1}")
+    conn.exec("SELECT count(cast_members.movie_id) AS movie_count, actors.name, actors.id FROM cast_members
+          JOIN actors ON actors.id = cast_members.actor_id
+          GROUP BY cast_members.actor_id, actors.name, actors.id
+          ORDER BY actors.name
+          LIMIT 20
+          OFFSET #{(page.to_i-1)*20+1}")
   end
 end
 
