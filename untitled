@@ -42,12 +42,15 @@ SELECT actors.id, actors.name AS amount FROM actors
                 SELECT count(cast_members.movie_id) AS total FROM cast_members
                       JOIN actors ON actors.id = cast_members.actor_id
                       WHERE actors.name ILIKE '%daniel%'
-                      GROUP BY cast_members.actor_id;
+                      GROUP BY cast_members.actor_id
+                      ORDER BY total;
 
-SELECT count(cast_members.movie_id) FROM cast_members
+SELECT count(cast_members.movie_id) AS movie_count, actors.name, actors.id FROM cast_members
   JOIN actors ON actors.id = cast_members.actor_id
-  WHERE actors.id = 7476
-  GROUP BY cast_members.actor_id;
+  GROUP BY cast_members.actor_id, actors.name, actors.id
+  ORDER BY actors.name
+  LIMIT 20
+  OFFSET #{(page.to_i-1)*20+1};
 
 
 

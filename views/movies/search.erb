@@ -14,7 +14,7 @@
 
     <h3>Search results for <%=@search%>:</h3>
     <ul><%@movies.each do |movie|%>
-      <li><a href="/actors/<%=movie["id"] %>"><%=movie["title"] %> </a></li>
+      <li><a href="/movies/<%=movie["id"] %>"><%=movie["title"] %> </a></li>
       <%end%></ul>
   </body>
 </html>
